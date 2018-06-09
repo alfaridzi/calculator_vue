@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculator</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css" >
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+<h1 class="title">Calculator with vue.js</h1>
+<h2 class="subtitle">by:alfaridzi48@gmail.com</h2>
+	<div class="box" id="app">
+		<div class="field">
+				<div class="columns">
+					<div class="column">
+							<div class="control">
+								<input type="text" class="input is-hovered" placeholder="masukkan input 1" v-model.number="value1">
+							</div>
+					</div>
+					<div class="column">
+						<input type="checkbox" v-model="button1">
+					</div>
+				</div>
+		</div>
+
+		<div class="field">
+			<div class="columns">
+				<div class="column">
+					<input type="text" class="input is-hovered"  placeholder="masukkan input 2" v-model.number="value2">
+				</div>
+				<div class="column">
+					<input type="checkbox" v-model="button2">
+				</div>
+			</div>	
+		</div>
+
+		<div class="field">
+			<div class="columns">
+				<div class="column">
+					<div class="control">
+						<input type="text" class="input is-hovered" placeholder="masukkan input 3" v-model.number="value3">
+					</div>
+				</div>
+				<div class="column">
+				<input type="checkbox" v-model="button3">
+				</div>
+			</div>
+		</div>
+
+
+		<div class="columns is-centered">
+			<div class="column">
+				<div class="control">
+					<button class="button is-primary" v-on:click="tambah">Tambah</button>
+
+				</div>
+			</div>
+			<div class="column">
+				<div class="control">
+					<button class="button is-primary" v-on:click="kurang">Kurang</button>
+				</div>
+			</div>
+			<div class="column">
+				<div class="control">
+					<button class="button is-primary" v-on:click="kali">Kali</button>
+				</div>
+			</div>
+			<div class="column">
+				<div class="control">
+					<button class="button is-primary" v-on:click="bagi">bagi</button>
+				</div>
+
+			</div>
+		</div>
+
+		<hr>
+		<div class="columns">
+			<div class="column">
+				<span id="hasil"></span>
+			</div>
+		</div>
+	</div>
+</body>
+
+<script>
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    button1: false,
+    button2: false,
+    button3:false,
+    value1:'',
+    value2:'',
+    value3:'',
+    vhasil:0,
+  },
+  methods: {
+  	tambah: function(event) {
+  		if(this.button1==false && this.button2 == false && this.button3 == false) {
+  			alert('harap ceklis 2 input atau lebih...');
+  		}else if(this.button1==true && this.button2 == false && this.button3 == false
+  			|| this.button1==false && this.button2 == true && this.button3 == false
+  			|| this.button1==false && this.button2 == false && this.button3 == true
+  			) {
+  			alert('harap ceklis 2 input atau lebih...');
+  		} else if(this.button1 == true && this.button2 == true && this.button3 == false) {
+  			this.vhasil = (this.value1 + this.value2);
+  			document.getElementById('hasil').innerHTML = this.vhasil;
+  			
+  		} else if(this.button1==true && this.button2 == false && this.button3 == true) {
+  			this.vhasil = (this.value1 + this.value3);
+  			document.getElementById('hasil').innerHTML = this.vhasil;
+  		}else if(this.button1==false && this.button2 == true && this.button3 == true) {
+  			this.vhasil = (this.value2 + this.value3);
+  			document.getElementById('hasil').innerHTML = this.vhasil;
+  		}else if(this.button1 == true && this.button2 == true && this.button3 == true) {
+  			this.vhasil = (this.value1 + this.value2 + this.value3);
+  			document.getElementById('hasil').innerHTML = this.vhasil;	
+  		}
+  	},
+
+  	kurang: function(event) {
+  		if(this.button1==false && this.button2 == false && this.button3 == false) {
+  			alert('harap ceklis 2 input atau lebih...');
+  		}else if(this.button1==true && this.button2 == false && this.button3 == false
+  			|| this.button1==false && this.button2 == true && this.button3 == false
+  			|| this.button1==false && this.button2 == false && this.button3 == true
+  			) {
+  			alert('harap ceklis 2 input atau lebih...');
+  		} else if(this.button1 == true && this.button2 == true && this.button3 == false) {
+  			this.vhasil = (this.value1 - this.value2);
+  			document.getElementById('hasil').innerHTML = this.vhasil;
+  			
+  		} else if(this.button1==true && this.button2 == false && this.button3 == true) {
+  			this.vhasil = (this.value1 - this.value3);
+  			document.getElementById('hasil').innerHTML = this.vhasil;
+  		}else if(this.button1==false && this.button2 == true && this.button3 == true) {
+  			this.vhasil = (this.value2 - this.value3);
+  			document.getElementById('hasil').innerHTML = this.vhasil;
+  		}else if(this.button1 == true && this.button2 == true && this.button3 == true) {
+  			this.vhasil = (this.value1 - this.value2 - this.value3);
+  			document.getElementById('hasil').innerHTML = this.vhasil;	
+  		}
+  	},
+
+  	bagi: function(event) {
+  	if(this.button1==false && this.button2 == false && this.button3 == false) {
+  			alert('harap ceklis 2 input atau lebih...');
+  		}else if(this.button1==true && this.button2 == false && this.button3 == false
+  			|| this.button1==false && this.button2 == true && this.button3 == false
+  			|| this.button1==false && this.button2 == false && this.button3 == true
+  			) {
+  			alert('harap ceklis 2 input atau lebih...');
+  		} else if(this.button1 == true && this.button2 == true && this.button3 == false) {
+  			this.vhasil = (this.value1 / this.value2);
+  			document.getElementById('hasil').innerHTML = this.vhasil;
+  			
+  		} else if(this.button1==true && this.button2 == false && this.button3 == true) {
+  			this.vhasil = (this.value1 / this.value3);
+  			document.getElementById('hasil').innerHTML = this.vhasil;
+  		}else if(this.button1==false && this.button2 == true && this.button3 == true) {
+  			this.vhasil = (this.value2 / this.value3);
+  			document.getElementById('hasil').innerHTML = this.vhasil;
+  		}else if(this.button1 == true && this.button2 == true && this.button3 == true) {
+  			this.vhasil = (this.value1 / this.value2 / this.value3);
+  			document.getElementById('hasil').innerHTML = this.vhasil;	
+  		}
+  	},
+
+  	kali: function(event) {
+  	if(this.button1==false && this.button2 == false && this.button3 == false) {
+  			alert('harap ceklis 2 input atau lebih...');
+  		}else if(this.button1==true && this.button2 == false && this.button3 == false
+  			|| this.button1==false && this.button2 == true && this.button3 == false
+  			|| this.button1==false && this.button2 == false && this.button3 == true
+  			) {
+  			alert('harap ceklis 2 input atau lebih...');
+  		} else if(this.button1 == true && this.button2 == true && this.button3 == false) {
+  			this.vhasil = (this.value1 * this.value2);
+  			document.getElementById('hasil').innerHTML = this.vhasil;
+  			
+  		} else if(this.button1==true && this.button2 == false && this.button3 == true) {
+  			this.vhasil = (this.value1 * this.value3);
+  			document.getElementById('hasil').innerHTML = this.vhasil;
+  		}else if(this.button1==false && this.button2 == true && this.button3 == true) {
+  			this.vhasil = (this.value2 * this.value3);
+  			document.getElementById('hasil').innerHTML = this.vhasil;
+  		}else if(this.button1 == true && this.button2 == true && this.button3 == true) {
+  			this.vhasil = (this.value1 * this.value2 * this.value3);
+  			document.getElementById('hasil').innerHTML = this.vhasil;	
+  		}
+  	},
+
+  }
+})
+	</script>
+</html>
